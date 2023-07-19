@@ -1,0 +1,38 @@
+
+ 
+.pager_buttons_container{
+  /* background:gray; */
+  min-width:100%;
+  min-height:5rem;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+
+  border-top: 4px solid #2A3F54;
+}
+.pager_buttons{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+
+}
+
+.pager_button{
+  min-width:4rem;
+  color:#E7E7E7;
+  font-size:15px;
+  margin:5px;
+  border-radius:5px;
+  padding-left:9px;
+  padding-right:9px;
+  padding-top:3px;
+  padding-bottom:3px;
+  background:#2A3F54;
+}
+
+
+

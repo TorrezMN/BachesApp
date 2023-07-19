@@ -1,0 +1,90 @@
+.age_user_cards{
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+}
+.education_user_cards{
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+}
+ 
+/*
+ 
+ ██╗   ██╗███████╗███████╗██████╗      ██████╗ █████╗ ██████╗ ██████╗ ███████╗
+ ██║   ██║██╔════╝██╔════╝██╔══██╗    ██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔════╝
+ ██║   ██║███████╗█████╗  ██████╔╝    ██║     ███████║██████╔╝██║  ██║███████╗
+ ██║   ██║╚════██║██╔══╝  ██╔══██╗    ██║     ██╔══██║██╔══██╗██║  ██║╚════██║
+ ╚██████╔╝███████║███████╗██║  ██║    ╚██████╗██║  ██║██║  ██║██████╔╝███████║
+  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝     ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚══════╝
+                                                                              
+ 
+*/
+.age_user_cards>.card{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 15px 25px 15px 25px;
+    margin: 5px 15px 5px 15px;
+
+    border: 3px solid #73879c;
+    border-radius: 5px;
+
+}
+.age_user_cards>.card>i{
+    font-size: 2.5rem;
+}
+
+.age_user_cards>.card>span{
+    font-size: 1.5rem;
+}
+
+
+/*
+ 
+███████╗██████╗ ██╗   ██╗ ██████╗ █████╗ ████████╗██╗ ██████╗ ███╗   ██╗     ██████╗ █████╗ ██████╗ ██████╗ ███████╗
+██╔════╝██╔══██╗██║   ██║██╔════╝██╔══██╗╚══██╔══╝██║██╔═══██╗████╗  ██║    ██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔════╝
+ █████╗  ██║  ██║██║   ██║██║     ███████║   ██║   ██║██║   ██║██╔██╗ ██║    ██║     ███████║██████╔╝██║  ██║███████╗
+ ██╔══╝  ██║  ██║██║   ██║██║     ██╔══██║   ██║   ██║██║   ██║██║╚██╗██║    ██║     ██╔══██║██╔══██╗██║  ██║╚════██║
+ ███████╗██████╔╝╚██████╔╝╚██████╗██║  ██║   ██║   ██║╚██████╔╝██║ ╚████║    ╚██████╗██║  ██║██║  ██║██████╔╝███████║
+ ╚══════╝╚═════╝  ╚═════╝  ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝     ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚══════╝
+ 
+ 
+ */
+
+ 
+.education_user_cards>.card{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    padding: 15px 25px 15px 25px;
+    margin: 5px 15px 5px 15px;
+
+    border: 3px solid #73879c;
+    border-radius: 5px;
+    
+}
+.education_user_cards>.card>.icons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.education_user_cards>.card>.icons>i{
+    font-size: 3rem;
+}
+.education_user_cards>.card>span{
+
+    font-size: 1.5rem;
+}

@@ -1,0 +1,11 @@
+{
+"pothole_diameter":9.0,
+"pothole_depth":2.0,
+"pothole_quantity":4,
+"material_type_road":1,
+"road_type":2,
+"type_of_traffic":1,
+"pothole_coordinates":"SRID=4326;POINT (-25.272316 -57.585773)",
+"registered_date":"2021-03-02T18:43:21.147461Z",
+"user":1
+}

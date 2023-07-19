@@ -1,0 +1,68 @@
+{% extends 'base_bootstrap_public.html' %} {% load static %} {% load crispy_forms_tags%} {% block head %}
+<!-- Include page styles. -->
+<link rel="stylesheet" href="{% static '/css/register_styles.css' %}"> {% endblock head %} {% block content %}
+
+
+<div class="content">
+    <div class="menu_head">
+        <p>
+            <a href="{% url 'public_home' %}">
+
+                <i class="fa fa-home"></i>
+            </a>
+        </p>
+
+    </div>
+    <!-- if messages  -->
+    {% if messages %}
+    <div class="messages">
+        <div class="row">
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+   <span aria-hidden="true">&times;</span>
+ </button>
+                <p class="lead">
+                    {{ message|safe }}
+
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+        <!--/row-messates -->
+
+    </div>
+    {% endif %}
+    <!-- end messages   -->
+
+    <div class="form">
+        <div class="help_form">
+
+
+        </div>
+        <form method="POST" action="{% url 'accounts_registrarse' %}">
+            {% csrf_token %}
+            <h1><i class="fa fa-edit"></i> Regisrarse</h1>
+            <!-- login form -->
+            {{form|crispy}}
+
+
+            <div>
+
+
+                <button type="submit" class="btn btn-primary btn-md float-right">
+          <i class="fas fa-sign-in-alt"></i>
+            Registrarse
+          </button>
+
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="separator"></div>
+        </form>
+    </div>
+</div>
+{% endblock content %} {% block scripts %}
+<script>
+</script>
+{% endblock scripts %}

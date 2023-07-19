@@ -1,0 +1,73 @@
+.content {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    /* The image used */
+    background-image: url("/static/img/landing_back2.jpg");
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.menu_head>p>a {
+    text-decoration: none;
+    color: #00cba9;
+}
+
+.menu_head {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin-top: -5%;
+    margin-left: 5%;
+    font-size: 3rem;
+}
+
+.messages {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.help-block {
+    color: #00cba9;
+    /* text-align: center; */
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.form>form {
+    color: #00cba9;
+    /* text-align: center; */
+    font-family: 'Titillium Web', sans-serif;
+    width: 50%;
+    height: 100%;
+    padding: 0% 5% 0 5%;
+    margin-top: 5%;
+}
+
+.form>form>h1 {
+    border-bottom: 1px solid #00cba9;
+    padding-bottom: 10px;
+}
+
+.form>form>div>button {
+    margin-left: 84%;
+}
+
+.form>.help_form {
+    width: 50%;
+    height: 100%;
+}

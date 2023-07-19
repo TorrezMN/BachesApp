@@ -1,0 +1,33 @@
+{% extends 'base_bootstrap_admin.html' %} {% load static %} {% load crispy_forms_tags%} {% block head %}
+<!-- Include page styles. -->
+<!-- <link rel="stylesheet" href="{% static '/css/admin_listado_usuarios.css' %}">  -->
+
+ 
+{% endblock head %}
+
+
+{% block content %}
+<center>
+  <h3>Solicitar Nueva Caracteristica</h3>
+</center>
+<form method="post">
+	{% csrf_token %}
+ <center>
+ 	{{form|crispy}}
+ </center>
+ 
+ <button type="submit" class="btn btn-primary float-right"><i class="fa fa-send-o"></i> Aceptar</button>
+</form>
+  
+{% endblock content %}
+    
+
+
+{% block scripts %}
+ 
+
+  <script>
+ 
+ 
+  </script>
+{% endblock scripts %}

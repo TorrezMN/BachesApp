@@ -1,0 +1,104 @@
+{% extends 'base_bootstrap_admin.html' %} {% load static %} {% load
+crispy_forms_tags%} {% block head %}
+<!-- Include page styles. -->
+<link
+  rel="stylesheet"
+  href="{% static '/css/admin_estadisticas_usuarios.css' %}"
+/>
+
+{% endblock head %} {% block content %}
+<center>
+  <h1>Estadisticas</h1>
+</center>
+
+
+{% if user_stats == None %}
+
+<div class="alert alert-info">
+  <strong>No hay usuarios registrados!</strong> Por el momento no hay usuarios registrados en el sistema.
+</div>
+
+  
+{% else %}
+  
+
+  
+
+<h2>
+  Usuarios <br>
+  <small>Sobre usuarios registrados.</small>
+</h2>
+<div class="age_user_cards">
+  <div class="card">
+    <i class="fa fa-users"></i>
+    <p>Total Usuarios</p>
+
+    <span> {{user_stats.total_users_count }} </span>
+  </div>
+  <div class="card">
+    <i class="fa fa-users"></i>
+    <p>Edad Media</p>
+    <span> {{ user_stats.age.media}} </span>
+  </div>
+  <div class="card">
+    <i class="fa fa-users"></i>
+    <p>Edad Max</p>
+    <span> {{user_stats.age.max}} </span>
+  </div>
+  <div class="card">
+    <i class="fa fa-users"></i>
+    <p>Edad Min</p>
+    <span> {{user_stats.age.min}} </span>
+  </div>
+</div>
+
+<h2>
+  Educacion <br>
+  <small>Sobre el nivel educativo de los usuarios.</small>
+</h2>
+<div class="education_user_cards">
+  <div class="card">
+    <div class="icons">
+
+      <i class='fa fa-graduation-cap'  style='color:#81D4FA;'></i>
+    </div>
+    <p>Educacion Primaria</p>
+
+    <span> {{user_stats.education_level.primary }} </span>
+  </div>
+  <div class="card">
+    <div class="icons">
+
+      <i class='fa fa-graduation-cap' style='color:#FFB74D;'></i>
+      <i class='fa fa-graduation-cap' style='color:#FFB74D;'></i>
+    </div>
+    <p>Educacion Secundaria</p>
+
+    <span> {{user_stats.education_level.secondary }} </span>
+  </div>
+  <div class="card">
+    <div class="icons">
+
+      <i class='fa fa-graduation-cap' style='color:#81C784;'></i>
+      <i class='fa fa-graduation-cap' style='color:#81C784;'></i>
+      <i class='fa fa-graduation-cap' style='color:#81C784;'></i>
+    </div>
+    <p>Educacion Terciaria</p>
+
+    <span> {{user_stats.education_level.academic }} </span>
+  </div>
+ 
+ 
+</div>
+
+
+
+
+{% endif %}
+
+{% endblock content %} {% block scripts %}
+
+<script>
+  $(document).ready(function () {});
+</script>
+{% endblock scripts %}

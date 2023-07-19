@@ -1,0 +1,49 @@
+{% extends 'base_bootstrap_contrib.html' %}
+
+
+{% load static %} {% load crispy_forms_tags%} {% block head %}
+ 
+{% endblock head %}
+
+
+{% block content %}
+ 
+<center>
+    <h1>Editar Perfil</h1>
+    <p class="text-muted font-13 m-b-30">
+      Editar perfil de usuario.
+    </p>
+</center>
+ 
+<form method="post">{% csrf_token %}
+    
+    
+    <div class="row">
+        
+        <div class="col-md-4">
+            {{ form.names|as_crispy_field }}
+            {{ form.last_name|as_crispy_field }}
+            {{ form.education_level|as_crispy_field }}
+            {{ form.age|as_crispy_field }}
+        </div>
+        <div class="col-md-8">
+            {{ form.interest|as_crispy_field }}
+            <input class='float-right btn btn-info' type="submit" value="Guardar">
+        </div> 
+      </div>
+
+
+     
+
+    
+</form>
+  
+{% endblock content %}
+    
+
+
+{% block scripts %}
+  
+ 
+{% endblock scripts %}
+

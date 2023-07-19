@@ -1,0 +1,375 @@
+{% extends 'base_bootstrap_admin.html' %} {% load static %} {% load
+crispy_forms_tags%} {% block head %}
+<!-- Include page styles. -->
+<link rel="stylesheet" href="{% static '/css/admin_styles.css' %}" />
+
+<style>
+  .solicitudes_container {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    width: 100vw;
+    align: 0 auto;
+  }
+  .solicitudes_container > .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 15vw;
+    padding: 10px 30px 10px 30px;
+    margin: 10px 30px 10px 30px;
+    border-radius: 10px;
+    border: 3px solid #bdbdbd;
+  }
+
+  .solicitudes_container > .card > .icon {
+    font-size: 3rem;
+    border-bottom: 1px solid #ffa726;
+    width: 100%;
+    text-align: center;
+  }
+  .solicitudes_container > .card > .value {
+    border-bottom: 1px solid #ffa726;
+    width: 100%;
+    text-align: center;
+  }
+  .solicitudes_container > .card > .title {
+    font-size: 1rem;
+    width: 100%;
+    text-align: center;
+  }
+  /* User Cards */
+  .users_cards{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+
+    margin: 3px 5px 3px 5px;
+    padding: 10px 30px 10px 30px;
+    border: 2px solid #8D6E63;
+    border-radius: 20px;
+    height: 100%;
+
+  }
+
+  .users_cards>.icon>i{
+    font-size: 3rem;
+    
+  }
+  .users_cards>.valor{
+    border-bottom: 1px solid #EF6C00;
+    width:70%;
+    text-align: center;
+  }
+  .caracteristicas_card{
+    border: 2px solid #8D6E63;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 10px;
+    height:100%;
+  }
+  .caracteristicas_card>.icon>i{
+    font-size:3rem;
+    color:#FFB74D;
+  }
+  .caracteristicas_card>.title{
+    font-size:2.5rem;
+    border-top: 2px solid #795548;
+  }
+  center>strong>h5{
+    width: 100%;
+    border-bottom: 2px solid #FFB74D;
+  }
+  
+</style>
+{% endblock head %} {% block content %}
+<div class="header_content">
+  <center>
+    <h3>Admin Desk</h3>
+  </center>
+  <hr />
+</div>
+<div class="body_content">
+  <div class="user_stats">
+    <h3>Usuarios</h3>
+    <hr />
+    {% if user_stats %} 
+    <div class="users_container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4">
+          <div class="users_cards">
+            <div class="icon">
+              <i class="fa fa-users"></i>
+            </div>
+            <div class="valor">
+              <h3>{{user_stats.total_users_count}}</h3>
+            </div>
+            <div class="title">
+              <strong>Total Usuarios</strong>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-8">
+          <div class="row age_row">
+            <div class="users_cards">
+              <div class="icon">
+                <i class="fa fa-users"></i>
+              </div>
+              <div class="valor">
+                <h3>{{user_stats.age.media}}</h3>
+              </div>
+              <div class="title">
+                <strong>Edad Media</strong>
+              </div>
+            </div>
+            <div class="users_cards">
+              <div class="icon">
+                <i class="fa fa-users"></i>
+              </div>
+              <div class="valor">
+                <h3>{{user_stats.age.max}}</h3>
+              </div>
+              <div class="title">
+                <strong>Edad Maxima</strong>
+              </div>
+            </div>
+            <div class="users_cards">
+              <div class="icon">
+                <i class="fa fa-users"></i>
+              </div>
+              <div class="valor">
+                <h3>{{user_stats.age.min}}</h3>
+              </div>
+              <div class="title">
+                <strong>Edad Minima</strong>
+              </div>
+            </div>
+          </div>
+          <div class="row education_row">
+            <div class="users_cards">
+              <div class="icon">
+                <i class="fa fa-graduation-cap"></i> 
+              </div>
+              <div class="valor">
+                <h3>{{user_stats.education_level.primary}}</h3>
+              </div>
+              <div class="title">
+                <strong>Educacion Primaria</strong>
+              </div>
+            </div>
+            <div class="users_cards">
+              <div class="icon">
+                <i class="fa fa-graduation-cap"></i> 
+                <i class="fa fa-graduation-cap"></i> 
+              </div>
+              <div class="valor">
+                <h3>{{user_stats.education_level.secondary}}</h3>
+              </div>
+              <div class="title">
+                <strong>Educacion Secundaria</strong>
+              </div>
+            </div>
+            <div class="users_cards">
+              <div class="icon">
+                <i class="fa fa-graduation-cap"></i> 
+                <i class="fa fa-graduation-cap"></i> 
+                <i class="fa fa-graduation-cap"></i> 
+              </div>
+              <div class="valor">
+                <h3>{{user_stats.education_level.academic}}</h3>
+              </div>
+              <div class="title">
+                <strong>Educacion Academica Superior</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% else %}
+    <div class="alert alert-info">
+      <strong>No hay usuarios registrados.</strong> No se han registrado
+      usuarios en el sistema.
+    </div>
+    {% endif %}
+  </div>
+  <div class="solicitudes_de_contacto_stats">
+    <h3>Solicitudes de Contacto</h3>
+    <hr />
+    {% if solicitudes_stats %}
+    <div class="solicitudes_container">
+      <div class="card">
+        <div class="icon" style="color: #2e7d32">
+          <i class="fa fa-flag"></i>
+        </div>
+        <div class="value">
+          <h3>{{solicitudes_stats.total}}</h3>
+        </div>
+        <div class="title">
+          <strong> Total </strong>
+        </div>
+      </div>
+      <div class="card">
+        <div class="icon" style="color: #69f0ae">
+          <i class="fa fa-check"></i>
+        </div>
+        <div class="value">
+          <h3>{{solicitudes_stats.contact_requests_status.Visto}}</h3>
+        </div>
+        <div class="title">
+          <strong> Visto </strong>
+        </div>
+      </div>
+      <div class="card">
+        <div class="icon" style="color: #ef6c00">
+          <i class="fa fa-history"></i>
+        </div>
+        <div class="value">
+          <h3>{{solicitudes_stats.contact_requests_status.Pendiente}}</h3>
+        </div>
+        <div class="title">
+          <strong> Pendiente </strong>
+        </div>
+      </div>
+      <div class="card">
+        <div class="icon" style="color: #ef5350">
+          <i class="fa fa-exclamation-circle"></i>
+        </div>
+        <div class="value">
+          <h3>{{solicitudes_stats.contact_requests_status.Importante}}</h3>
+        </div>
+        <div class="title">
+          <strong> Importante </strong>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+      <strong>No hay solicitudes de contacto .</strong> No se han registrado
+      solicitudes de contacto en el sistema.
+    </div>
+    {% endif %}
+  </div>
+  <div class="solicitudes_de_caracteristicas_stats">
+    <h3>Nuevas Caracteristicas</h3>
+    
+    <hr />
+    {% if caracteristicas_stats %}
+    <div class="row">
+      <div class="col-xs-6 col-md-4">
+        <div class="caracteristicas_card">
+          <div class="icon">
+            <i class="fa fa-check-square"></i>
+          </div>
+          <div class="value">
+            <h3>
+              
+
+              {{caracteristicas_stats.total_solicitudes}} 
+          
+          </h3>
+          </div>
+          <div class="title">
+            Total Solicitudes
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-8">
+        <div class="row ">
+          
+
+            <center><strong><h5>Usuarios</h5></strong>
+            </center>
+            
+            
+            {% for i in caracteristicas_stats.caracteristicas_usuarios %}
+            
+            <div class="widget_summary">
+              <div class="w_left w_25">
+                <span>
+                  {{i.0}}                   
+                  </span>
+                </div>
+                <div class="w_center w_55">
+                  <div class="progress">
+                    <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{i.1}}" aria-valuemin="0" aria-valuemax="100" style="width: {{i.1}}%;">
+                      <span class="sr-only">{{i.1}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="w_right w_20">
+                  <span>
+                    {{i.1}}
+                  </span>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+
+
+            
+          
+            {% endfor %}
+              
+         </div>
+         <div class="row ">
+          
+
+          <center><strong><h5>Estado</h5></strong>
+          </center>
+          
+          
+          {% for i in caracteristicas_stats.caracteristicas_estado %}
+          
+          <div class="widget_summary">
+            <div class="w_left w_25">
+              <span>
+                {{i.0}}                   
+                </span>
+              </div>
+              <div class="w_center w_55">
+                <div class="progress">
+                  <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{i.1}}" aria-valuemin="0" aria-valuemax="100" style="width: {{i.1}}%;">
+                    <span class="sr-only">{{i.1}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="w_right w_20">
+                <span>
+                  {{i.1}}
+                </span>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+
+          
+        
+          {% endfor %}
+            
+       </div>
+        
+      </div>
+    </div>
+    
+    
+    
+    {% else %}
+    <div class="alert alert-info">
+      <strong
+        >No hay registros de solicitudes de nuevas caracteristicas.</strong
+      >
+      No hay registros que mostrar.
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %} {% block scripts %}
+<script></script>
+{% endblock scripts %}

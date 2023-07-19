@@ -1,0 +1,200 @@
+{% extends 'base_bootstrap_admin.html' %} {% load static %} {% load crispy_forms_tags%} {% block head %}
+<!-- Include page styles. -->
+<link rel="stylesheet" href="{% static '/css/admin_listado_usuarios.css' %}"> 
+
+{% comment %} Paginator styles. {% endcomment %}
+<link href="{% static 'paginator.css' %}" rel="stylesheet">
+
+<!-- Datatables -->
+    
+    <link href="{% static 'vendors/datatables.net-bs/css/dataTables.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css' %}" rel="stylesheet">
+
+{% endblock head %}
+
+
+{% block content %}
+<center>
+    <h1>Usuarios</h1>
+    
+    <p class="text-muted font-13 m-b-30">
+      Listado general de usuarios registrados en el sistema.
+    </p>
+</center>
+
+
+{% if users %}
+  
+<table 
+id="listado_usuarios" 
+class="table table-striped table-bordered" 
+style="width:100%">
+  <thead>
+    <tr>
+        <th>Nuevo?</th>
+      <th>Fecha Registro</th>
+      <th>Ultimo Ingreso</th>
+      <th>Email</th>
+      <th>Nivel Educativo</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+      
+      {% for usr in users %}
+          
+      
+      <tr>
+          <td>{{usr.its_new_user|safe}}</td>
+          <td>{{usr.profile_user.date_joined}}</td>
+          
+          {% if usr.profile_user.last_login == None %}
+          <td><i class="fa fa-warning blink"  style='color:orange;'></i> Pendiente</td>
+          {% else %}
+          <td>{{usr.profile_user.last_login}}</td>
+
+          {% endif %}
+              
+          <td>{{usr.profile_user.email}}</td>
+          <td>{{usr.get_education_level_templates|safe}}</td>
+          <td>
+              <center>
+                <a href="{% url 'accounts_delete_usuario' pk=usr.id %}">
+                  <i class="fa fa-trash" data-toggle="tooltip" title="Eliminar"></i>
+                </a>
+                <a href="{% url 'accounts_editar_usuario' pk=usr.id %}" style="color: red;">
+
+                  <i class="fa fa-edit" data-toggle="tooltip" title="Editar Usuario"></i>
+                </a>  
+                  <a href="{% url 'accounts_detalle_usuario' pk=usr.id %}">
+                      <i class="fa fa-plus" data-toggle="tooltip" title="Detalles"></i>
+                  </a>
+              </center>
+          </td>
+      </tr>
+      {% endfor %}
+    
+  </tbody>
+</table>
+ 
+{% else %}
+  
+
+<div class="jumbotron alert alert-info">
+  <div class="container">
+    <center>
+      <h3>No hay Usuarios registrados.</h3>
+    </center>
+    
+  </div>
+</div>
+
+{% endif %}
+  
+  {% comment %} paginator {% endcomment %}
+
+
+
+
+
+
+    <div class='pager_buttons_container'>
+      <h3>TOTAL GENERAL {{total_registros}} </h3>
+      <div class='pager_buttons'>
+        {% if page_obj.has_previous %}
+            <a class='pager_button ' href="?page=1">&laquo; primero</a>
+            <a class='pager_button ' href="?page={{ page_obj.previous_page_number }}">anterior</a>
+        {% endif %}
+
+        <span class="pager_button ">
+            Grupo {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a class='pager_button ' href="?page={{ page_obj.next_page_number }}">siguiente</a>
+            <a class='pager_button ' href="?page={{ page_obj.paginator.num_pages }}">ultimo &raquo;</a>
+        {% endif %}
+      </div>
+    </div>
+
+
+{% endblock content %}
+    
+
+
+{% block scripts %}
+  <!-- Datatables -->
+  <script src="{% static 'vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-keytable/js/dataTables.keyTable.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-scroller/js/dataTables.scroller.min.js' %}"></script>
+  <script src="{% static 'vendors/jszip/dist/jszip.min.js' %}"></script>
+  <script src="{% static 'vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+  <script src="{% static 'vendors/pdfmake/build/vfs_fonts.js' %}"></script>
+
+
+  <script>
+    $(document).ready(function () {
+      $("#listado_usuarios").DataTable({
+        'responsive': true,
+        'pageLength': 5,
+        'lengthMenu': [ 5,10, 25, 50 ],
+        "columnDefs": [
+      { "width": "10%", "targets": 0 },
+      { "width": "15%", "targets": 1 },
+      { "width": "15%", "targets": 2 },
+      { "width": "20%", "targets": 3 },
+      { "width": "15%", "targets": 4 },
+      { "width": "10%", "targets": 5 },
+      
+    ],
+  
+        
+        'language': {
+          sProcessing: "Procesando...",
+          sLengthMenu: "Mostrar _MENU_ registros",
+          sZeroRecords: "No se encontraron resultados",
+          sEmptyTable: "Ningún dato disponible en esta tabla",
+          sInfo:
+            "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+          sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+          sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+          sInfoPostFix: "",
+          sSearch: "Buscar:",
+          sUrl: "",
+          sInfoThousands: ",",
+          sLoadingRecords: "Cargando...",
+          oPaginate: {
+            sFirst: "Primero",
+            sLast: "Último",
+            sNext: "Siguiente",
+            sPrevious: "Anterior",
+          },
+          oAria: {
+            sSortAscending:
+              ": Activar para ordenar la columna de manera ascendente",
+            sSortDescending:
+              ": Activar para ordenar la columna de manera descendente",
+          },
+          buttons: {
+            copy: "Copiar",
+            colvis: "Visibilidad",
+          },
+        },
+      });
+    });
+  </script>
+{% endblock scripts %}

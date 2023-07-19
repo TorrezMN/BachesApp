@@ -1,0 +1,78 @@
+{% extends 'base_bootstrap_admin.html' %} {% load static %} {% load crispy_forms_tags%} {% block head %}
+
+admin_detalle_usuario
+<style>
+    .contact_card{
+        display:flex;
+        flex-direction: column;
+        
+        width: 70vw;
+        height:50vh;
+        /* Border */
+        border: 1px solid #2a3f54;
+        border-radius: 10px;
+    }
+    .contact_data{
+        display:flex;
+        flex-direction: row;
+        top:0;
+        border-bottom: 1px solid #2a3f54;
+        width: 100%;
+        padding: 20px 25px 20px 25px;
+    }
+    .contact_data_left{
+        margin: 0 30px 0 30px;
+    }
+    .contact_content{
+        padding: 20px 25px 20px 25px;
+    }
+    .jumbotron>.container>h1{
+        border-bottom: 2px solid #73879c;
+    }
+</style>
+    
+{% endblock head %}
+
+
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>Solicitud de Nuevas Caracteristicas</h1>
+        <p>Solicitudes de nuevas caracteristicas para el sistema.</p>
+        <div class="contact_card">
+            <div class="contact_data">
+                <div class="contact_data_left">
+                    <p><i class="fa fa-user"></i> <b>Nombre:</b> {{caracteristica.usuario_solicitante}}</p>
+                    <p><a href="{% url 'accounts_detalle_usuario' pk=caracteristica.usuario_solicitante.id %}" class="btn btn-primary">Ver Perfil</a></p>
+                </div>
+                <div class="contact_data_right">
+                    <p><b>Estado: </b>{{caracteristica.get_estado_template_tag|safe}}</p>
+                    <p><b>Fecha: </b>{{caracteristica.caracteristica_registered_date}}</p>
+                </div>
+        
+            </div>
+            <div class="contact_content">
+                <p>{{caracteristica.descripcion}}</p>
+        
+            </div>
+        </div>
+    </div>
+    <br>
+    <a href="{% url 'admin_listado_de_caracteristicas' %}" class='pull-right btn btn-primary'><i class="fa fa-backward"></i> Volver</a>
+</div>
+
+
+ 
+
+
+
+{% endblock content %}
+    
+
+
+{% block scripts %}
+ 
+
+  <script></script>
+{% endblock scripts %}
+

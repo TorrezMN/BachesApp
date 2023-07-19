@@ -1,0 +1,60 @@
+
+
+{% extends 'base_bootstrap_contrib.html' %} {% load static %} {% load crispy_forms_tags%} {% block head %}
+<!-- Include page styles. -->
+<link rel="stylesheet" href="{% static '/css/admin_detalle_usuario.css' %}"> 
+
+
+
+
+{% endblock head %}
+
+
+{% block content %}
+<center>
+    <h1>Perfil de Usuario</h1>
+    
+</center>
+<hr>
+<div class="alert alert_detalle_user" role="alert">
+  <h3>Datos Usuario</h3>
+  <hr>
+  <p style="font-size: 12px; display:inline;"><i class="fa fa-edit"></i>  Registrado el: </p> {{user_profile.profile_user.date_joined}} <br>
+  <p style="font-size: 12px; display:inline;"><i class="fa fa-envelope"></i>  Correo Electronico: </p> {{user_profile.profile_user.email}} <br>
+  
+  
+  
+  <h3>Datos Perfil Personal</h3>
+  <hr>
+  Nombre: {{user_profile.names|default:"NO COMPLETADO"}} <br>
+  Apellidos: {{user_profile.last_name|default:"NO COMPLETADO"}} <br>
+  Nivel Educativo: {{user_profile.get_education_level_templates_basic|safe}} <br>
+  Edad: {{user_profile.age|default:"NO COMPLETADO"  }} <br>
+  Intereses: {{user_profile.interest|default:"NO COMPLETADO"  }} <br>
+  <hr>
+
+  <a href="{{ request.META.HTTP_REFERER }}"><i class="fa fa-mail-reply"></i> Volver</a>
+  &nbsp
+  &nbsp
+  &nbsp    
+  <a href="{% url 'accounts_editar_perfil' pk=user.id %}"><i class="fa fa-edit"></i> Editar</a>
+  
+  
+ 
+  
+</div>
+
+
+{% endblock content %}
+    
+
+
+{% block scripts %}
+  
+
+  <script>
+    $(document).ready(function () {
+  
+    });
+  </script>
+{% endblock scripts %}

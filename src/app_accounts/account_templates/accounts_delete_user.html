@@ -1,0 +1,38 @@
+
+{% extends 'base_bootstrap_admin.html' %} {% load static %} {% load crispy_forms_tags%} {% block head %}
+<!-- Include page styles. -->
+<!-- <link rel="stylesheet" href="{% static '/css/admin_listado_usuarios.css' %}">  -->
+
+
+{% endblock head %}
+
+
+{% block content %}
+<center>
+    <h1>Borrar Usuario</h1>
+    
+</center>
+<hr>
+<center>
+  <div class="alert alert-danger" role="alert">
+
+    <form method="post">{% csrf_token %}
+      <p>Confirme que desea eliminar el usuario "{{ object.profile_user }}"?</p>
+      <input type="submit" value="Confirmar">
+    </form>
+  </div>
+</center>>
+
+{% endblock content %}
+    
+
+
+{% block scripts %}
+  
+
+  <script>
+    $(document).ready(function () {
+  
+    });
+  </script>
+{% endblock scripts %}

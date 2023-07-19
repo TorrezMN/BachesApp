@@ -1,0 +1,66 @@
+{% extends 'base_bootstrap_public.html' %} {% load static %} {% load crispy_forms_tags%} {% block head %}
+<!-- Include page styles. -->
+<link rel="stylesheet" href="{% static '/css/login_styles.css' %}"> {% endblock head %} {% block content %}
+
+
+
+<div class="content">
+    <div class="top_wave">
+        <svg id='login_top_wave' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0E0B16" fill-opacity="1" d="M0,288L48,245.3C96,203,192,117,288,80C384,43,480,53,576,74.7C672,96,768,128,864,144C960,160,1056,160,1152,144C1248,128,1344,96,1392,80L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+
+    </div>
+    <!-- if messages  -->
+    {% if messages %}
+    <div class="login_messages">
+        <div class="row messages">
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+                <p class="lead">
+                    {{ message }}
+
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+        <!--/row-messates -->
+
+    </div>
+    {% endif %}
+    <!-- end messages   -->
+
+    <div class="login_page">
+
+
+
+        <!-- <form method="POST" action="{% url 'accounts_registrarse' %}"> -->
+        <form method="POST">
+            {% csrf_token %}
+            <h1><i class="fa fa-user-circle-o" aria-hidden="true"></i> Ingresar</h1>
+            <!-- login form -->
+            {{form|crispy}}
+
+            <div>
+                <div class="float-right">
+
+                    <button type="submit" class="btn btn-primary btn-lg float-ri">
+                  <i class="fas fa-sign-in-alt    "></i> 
+                  Ingresar
+                </button>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="separator"></div>
+        </form>
+
+
+    </div>
+    <div class="bottom_wave">
+
+        <svg id='login_bottom_wave' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0E0B16"  fill-opacity="1" d="M0,0L48,48C96,96,192,192,288,240C384,288,480,288,576,282.7C672,277,768,267,864,266.7C960,267,1056,277,1152,266.7C1248,256,1344,224,1392,208L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+    </div>
+</div>
+{% endblock content %}

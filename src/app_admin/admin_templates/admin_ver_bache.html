@@ -1,0 +1,94 @@
+ 
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Baches Collector | {{head_title}}</title>
+    {{map.header.render|safe}}
+    <style>
+        body{
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        /* div[id^="map_"] { */
+            /* position: relative; */
+/* width: 92.0%; */
+/* height: 80.0%; */
+/* left: 5.5%; */
+/* top: 5.5%; */
+/* padding: 10px 20px 10px 20px; */
+/* } */
+ .menu{
+  display: flex;
+  flex-direction: 'row';
+  justify-content: 'center';
+  align-items: 'center';
+  width: 100vw;
+}
+.menu >h1:nth-child(1){
+  
+  margin-left: 50%;
+}
+.menu >h1:nth-child(2){
+  
+  margin-left: 2%;
+}
+    </style>
+</head>
+<body>
+  <div class="menu">
+      <h1><a href="{{ request.META.HTTP_REFERER }}">Volver</a></h1>
+      <h1><a data-toggle="modal" href="#AyudaModal"><span class="glyphicon glyphicon-info-sign"></span></a></h1>
+      
+      
+    </div>
+  {{map.html.render|safe}}
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade " id="AyudaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">Ayuda</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="font-weight-light">Desplace el puntero y observe el mapa.</p>
+        <p class="font-weight-light" style="display: inline-block;" >
+          Si la profundidad del bache es mayor a 5 se observan en color <p style="display: inline-block; color:#FF0000">&nbsp; Rojo</p> 
+          sino usted podra observarlos en color <p style="display: inline-block; color:#3186cc"> Celeste</p>.
+        </p>
+        <p class="font-weight-light" style="display: inline-block;" >Por otro lado el tamaño de los puntos se mapea con respecto al diametro o diametro promedio de los baches registrados en el lugar.</p>
+
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+      {{map.script.render|safe}}
+      $(window).on('load', function() {
+      $('#AyudaModal').modal('show');
+  });
+    </script>
+  
+</body>
+</html>  

@@ -1,0 +1,30 @@
+{% extends 'base_bootstrap_public.html' %}
+
+
+{% block head %}
+    <style>
+        .alert{
+            margin:0 auto;
+            
+            height: 100vh;
+        }
+    </style>
+{% endblock head %}
+    
+{% block content %}
+<div class="alert alert-danger" role="alert">
+    
+    <div class="jumbotron alert-danger">
+        <div class="container">
+            <h1>Error</h1>
+            <p>Lo sentimos, necesita permisos de administrador para acceder.</p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="{% url 'public_home' %}">Volver</a>
+            </p>
+        </div>
+    </div>
+    
+    
+  </div>
+{% endblock content %}
+    

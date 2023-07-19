@@ -1,0 +1,159 @@
+{% extends 'base_bootstrap_admin.html' %} {% load static %} {% load crispy_forms_tags%} {% block head %}
+<!-- Include page styles. -->
+<link rel="stylesheet" href="{% static '/css/admin_listado_usuarios.css' %}"> 
+
+
+<!-- Datatables -->
+    
+    <link href="{% static 'vendors/datatables.net-bs/css/dataTables.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css' %}" rel="stylesheet">
+
+{% endblock head %}
+
+
+{% block content %}
+<center>
+    <h1>Listado de Caracteristicas</h1>
+    <p>Listado de caracteristicas solicitadas por los usuarios.</p>
+</center>
+
+
+{% if caracteristicas %}
+  
+
+<table 
+id="listado_caracteristicas" 
+class="table table-striped table-bordered" 
+style="width:100%">
+  <thead>
+    <tr>
+        <th  data-toggle="tooltip" title="Ver Mapa">Usuario</th>
+        <th  data-toggle="tooltip" title="Diametro">Estado</th>
+        <th  data-toggle="tooltip" title="Profundidad">Descripcion</th>
+        <th  data-toggle="tooltip" title="Cantidad">Fecha</th>
+       
+        
+    </tr>
+  </thead>
+
+
+  <tbody>
+      {% for reg in caracteristicas %}
+      
+      <tr>
+          <!-- <td data-toggle="tooltip" title="Ver Mapa"> -->
+          <td>
+        {{reg.usuario_solicitante}}
+          </td>
+        <td >
+        {{reg.get_estado_template_tag|safe}}
+          </td>
+        <td >
+        {{reg.descripcion|truncatechars:50}} <a href=".\admin_listado_de_caracteristicas\{{reg.id}}">Ver mas.</a>
+          </td>
+        <td >
+        {{reg.caracteristica_registered_date|date:"d/m/y"}}
+          </td>
+
+    </tr>
+
+     
+      {% endfor %}
+    
+  </tbody>
+</table>
+
+ 
+
+{% else %}
+  
+<div class="jumbotron alert alert-info">
+  <div class="container">
+    <center>
+      <h3>Sin registros.</h3>
+      <p>No hay registros. </p>
+    </center>
+    
+  </div>
+  </div>
+   
+{% endif %}
+   
+{% endblock content %}
+    
+
+
+{% block scripts %}
+  <!-- Datatables -->
+  <script src="{% static 'vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-keytable/js/dataTables.keyTable.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-scroller/js/dataTables.scroller.min.js' %}"></script>
+  <script src="{% static 'vendors/jszip/dist/jszip.min.js' %}"></script>
+  <script src="{% static 'vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+  <script src="{% static 'vendors/pdfmake/build/vfs_fonts.js' %}"></script>
+
+
+  <script>
+    $(document).ready(function () {
+      $("#listado_caracteristicas").DataTable({
+        'responsive': true,
+        'pageLength': 5,
+        'lengthMenu': [ 5,10, 25, 50 ],
+        "columnDefs": [
+      { "width": "20%", "targets": 0 },
+      { "width": "15%", "targets": 1 },
+      { "width": "50%", "targets": 2 },
+      { "width": "15%", "targets": 3 },
+      
+      
+      
+    ],
+  
+        
+        'language': {
+          sProcessing: "Procesando...",
+          sLengthMenu: "Mostrar _MENU_ registros",
+          sZeroRecords: "No se encontraron resultados",
+          sEmptyTable: "Ningún dato disponible en esta tabla",
+          sInfo:
+            "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+          sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+          sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+          sInfoPostFix: "",
+          sSearch: "Buscar:",
+          sUrl: "",
+          sInfoThousands: ",",
+          sLoadingRecords: "Cargando...",
+          oPaginate: {
+            sFirst: "Primero",
+            sLast: "Último",
+            sNext: "Siguiente",
+            sPrevious: "Anterior",
+          },
+          oAria: {
+            sSortAscending:
+              ": Activar para ordenar la columna de manera ascendente",
+            sSortDescending:
+              ": Activar para ordenar la columna de manera descendente",
+          },
+          buttons: {
+            copy: "Copiar",
+            colvis: "Visibilidad",
+          },
+        },
+      });
+    });
+  </script>
+{% endblock scripts %}

@@ -1,0 +1,311 @@
+{% extends 'base_bootstrap_contrib.html' %}
+{% block head %}
+<style>
+	.row{
+		margin-top: 5px;
+	}
+	.general{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	 .card{
+	 	display: flex;
+	 	flex-direction: row;
+	 	justify-content: center;
+	 	align-items: center;
+	 	padding:5px;
+	 	margin-left: 5px;
+	 }
+	 .icon>i{
+	 	font-size: 2rem;
+		 color:#2a3f54,
+	 }
+	 .content{
+	 	display: flex;
+	 	flex-direction: column;
+	 	 margin-left: 4px;
+	 	
+	 }
+	 
+	 .content>.title{
+	 	color:#2a3f54;
+	 	margin: 0 auto;
+	 	  border-bottom: 2px solid #73879C;
+	 	  width: 100%;
+	 }
+	 .content>.value{
+	 	color:#2a3f54;
+	 	text-align: center;	 	
+	 	font-weight: bolder;
+	 }
+	 .section_container{
+	 	display: flex;
+	 	flex-direction: row;
+	 	justify-content: center;
+	 	align-items: center;
+	 	margin: 10px 30px 10px 30px;
+	 	border: 1px solid #73879C;
+	 	border-radius: 5px;
+	 }
+	 .title_left>h6{
+	 	border-bottom: 1px solid #73879C;
+		 color:#2a3f54;
+	 }
+	 .tipo_trafico>.card>.icon>i{
+	 	font-size: 1rem;
+	 }
+
+	 .tipo_material>.card>.icon>i{
+	 	font-size: 1rem;
+	 }
+	.icon_asfalto>i{
+		color: black;
+	}
+	.icon_tierra>i{
+		color: brown;
+	}
+	.icon_piedra>i{
+		color:gray;
+	}
+	.card>.icon{
+		color:#2a3f54;
+	}
+	.title_left>h3{
+		color: #2a3f54;
+	}
+	footer{
+		color:#2a3f54;
+	}
+	
+	</style>
+{% endblock head %}
+
+{% block content %}
+
+<div class="title_left">
+<h3>Mis Registros</h3>
+</div>
+
+{% if not stats %}
+
+<div class="jumbotron">
+	<div class="container">
+		<center>
+			<p>Todavia no se realizo ningun registro.</p>
+		</center>
+	</div>
+</div>
+
+	
+{% else %}
+<div class="row general">
+	<div class="card">
+		<div class="icon"><i class="fa fa-crosshairs"></i></div>
+		<div class="content">
+			<div class="title">Total General</div>
+			<div class="value green">{{stats.total_aportes_general}}</div>
+		</div>
+	</div>
+	<div class="card">
+		<div class="icon"><i class="fa fa-crosshairs"></i></div>
+		<div class="content">
+			<div class="title">Mis Aportes</div>
+			<div class="value green">{{stats.total_aportes}}</div>
+		</div>
+	</div>
+</div> 
+
+<div class="row">
+  <div class="col-md-6">
+  	
+<div class="title_left">
+<h6><i class="fa fa-circle-o-notch"></i> Diametro</h6>
+</div>
+<div class="row section_container diametro">
+	<div class="card">
+		
+		<div class="content">
+			<div class="title">Media</div>
+			<div class="value green">{{stats.pothole.diametro.media}}</div>
+		</div>
+	</div>
+	<div class="card">
+		
+		<div class="content">
+			<div class="title">Maximo</div>
+			<div class="value green">{{stats.pothole.diametro.max}}</div>
+		</div>
+	</div>
+	<div class="card">
+		
+		<div class="content">
+			<div class="title">Minimo</div>
+			<div class="value green">{{stats.pothole.diametro.min}}</div>
+		</div>
+	</div>
+</div> 
+<div class="title_left">
+<h6><i class="fa fa-arrows-v"></i> Profundidad</h6>
+</div>
+<div class="row section_container profundidad">
+	<div class="card">
+		
+		<div class="content">
+			<div class="title">Media</div>
+			<div class="value green">{{stats.pothole.profundidad.media}}</div>
+		</div>
+	</div>
+	<div class="card">
+		
+		<div class="content">
+			<div class="title">Maximo</div>
+			<div class="value green">{{stats.pothole.profundidad.max}}</div>
+		</div>
+	</div>
+	<div class="card">
+		
+		<div class="content">
+			<div class="title">Minimo</div>
+			<div class="value green">{{stats.pothole.profundidad.min}}</div>
+		</div>
+	</div>
+</div> 
+<div class="title_left">
+<h6><i class="fa fa-sort-numeric-asc"></i> Cantidad</h6>
+</div>
+<div class="row section_container cantidad">
+	<div class="card">
+		
+		<div class="content">
+			<div class="title">Media</div>
+			<div class="value green">{{stats.pothole.cantidad.media}}</div>
+		</div>
+	</div>
+	<div class="card">
+		
+		<div class="content">
+			<div class="title">Maximo</div>
+			<div class="value green">{{stats.pothole.cantidad.max}}</div>
+		</div>
+	</div>
+	<div class="card">
+		
+		<div class="content">
+			<div class="title">Minimo</div>
+			<div class="value green">{{stats.pothole.cantidad.min}}</div>
+		</div>
+	</div>
+</div> 
+
+  </div>
+  <div class="col-md-6">
+  	<div class="title_left">
+<h6><i class="fa fa-map-marker"></i> Tipo de Camino</h6>
+</div>
+<div class="row section_container tipo_camino">
+	<div class="card">
+		
+		<div class="content">
+			<div class="title">Ruta</div>
+			<div class="value green">{{stats.tipo_camino.ruta}}</div>
+		</div>
+	</div>
+	<div class="card">
+		
+		<div class="content">
+			<div class="title">Vecinal</div>
+			<div class="value green">{{stats.tipo_camino.vecinal}}</div>
+		</div>
+	</div>
+	<div class="card">
+		
+		<div class="content">
+			<div class="title">Nacional</div>
+			<div class="value green">{{stats.tipo_camino.nacional}}</div>
+		</div>
+	</div>
+</div> 
+
+  	<div class="title_left">
+<h6><i class="fa fa-car"></i> Tipo de Trafico</h6>
+</div>
+<div class="row section_container tipo_trafico">
+	<div class="card">
+		<div class="icon"><i class="fa fa-car"></i><i class="fa fa-car"></i><i class="fa fa-car"></i></div>
+		<div class="content">
+			<div class="title">Mucho</div>
+			<div class="value green">{{stats.tipo_trafico.mucho}}</div>
+		</div>
+	</div>
+	<div class="card">
+		<div class="icon"><i class="fa fa-car"><i class="fa fa-car"></i></i></div>
+		<div class="content">
+			<div class="title">Poco</div>
+			<div class="value green">{{stats.tipo_trafico.poco}}</div>
+		</div>
+	</div>
+	<div class="card">
+		<div class="icon"><i class="fa fa-car"></i></div>
+		<div class="content">
+			<div class="title">Bajo</div>
+			<div class="value green">{{stats.tipo_trafico.bajo}}</div>
+		</div>
+	</div>
+</div> 
+
+
+
+  	<div class="title_left">
+<h6><i class="fa fa-star"></i> Tipo de Material</h6>
+</div>
+<div class="row section_container tipo_material">
+	<div class="card">
+		<div class="icon icon_asfalto"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+		<div class="content">
+			<div class="title">Asfaltado</div>
+			<div class="value green">{{stats.tipo_material.asfaltado}}</div>
+		</div>
+	</div>
+	<div class="card">
+		<div class="icon icon_tierra"><i class="fa fa-star"></i></div>
+		<div class="content">
+			<div class="title">Tierra</div>
+			<div class="value green">{{stats.tipo_material.tierra}}</div>
+		</div>
+	</div>
+	<div class="card">
+		<div class="icon icon_piedra"><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+		<div class="content">
+			<div class="title">Piedra</div>
+			<div class="value green">{{stats.tipo_material.piedra}}</div>
+		</div>
+	</div>
+</div> 
+
+
+
+
+
+  </div>
+</div>
+
+
+
+
+	
+{% endif %}
+
+
+
+<!-- 
+
+
+<center>	
+{{stats|safe}}
+</center>
+
+   -->
+{% endblock content %}
+    

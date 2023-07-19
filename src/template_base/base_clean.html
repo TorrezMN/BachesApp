@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+{% load static %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+ 
+<link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/gif" sizes="16x16"> 
+ 
+<title>Baches | {{head_title}}</title>
+ 
+ {% block styles %}
+     
+ {% endblock styles %}
+     
+</head>
+<body>
+<div class="container">
+    
+    {% block content %}
+        
+    {% endblock content %}
+        
+</div>
+
+
+    
+    {% block scripts %}
+        
+    {% endblock scripts %}
+        
+
+</body>
+</html>

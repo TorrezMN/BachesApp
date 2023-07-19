@@ -1,0 +1,22 @@
+ .education_label{
+     background:#003d5c;
+     color: whitesmoke;
+     padding: 4px 10px 4px 10px; 
+     border-radius: 5px;
+    }
+    .alert_detalle_user{
+        background:#37474F;
+        color: whitesmoke;
+        
+        
+    }
+    .alert_detalle_user>a:hover{
+        border: 1px solid whitesmoke;
+        padding: 3px 5px 3px 5px ;
+        border-radius: 5px;
+        
+    }
+    .alert_detalle_user>a{
+        color: whitesmoke;
+        
+    }

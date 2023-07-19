@@ -1,0 +1,66 @@
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li><a><i class="fa fa-users"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{% url 'admin_listado_usuarios' %}"><i class="fa fa-list-alt"></i> Listado de Usuarios</a></li>
+                                        <li>
+                                            <a href="{% url 'admin_estadisticas_usuarios' %}">
+                                                <i class="fa fa-bar-chart"></i> Estadisticas de Usuarios</a>
+                                        </li>
+
+
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="menu_section">
+                            <h3>Registros</h3>
+                            <ul class="nav side-menu">
+                                <li><a><i class="fa fa-users"></i> Mis Aportes <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{% url 'admin_mis_aportes' %}"><i class="fa fa-list-alt"></i> Listado de Aportes</a></li>
+                                        <li><a href="{% url 'admin_lista_general_de_aportes' %}"><i class="fa fa-list-alt"></i> Listado Total</a></li>
+                                        <li><a href="{% url 'admin_descargar' %}">
+                                            <i class="fa fa-download"></i>
+                                            Descargar</a></li>
+                                        <li><a href="{% url 'admin_mapa_general_de_aportes' %}">
+                                            <i class="fa fa-map"></i>
+                                            Ver Mapa</a></li>
+
+
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="menu_section">
+                            <h3>Mensajes</h3>
+                            <ul class="nav side-menu">
+                                <li><a><i class="fa fa-envelope"></i> Solicitud de Contacto <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{% url 'admin_lista_solicitud_contacto' %}"><i class="fa fa-list-alt"></i> Listado de Solicitudes</a></li>
+                                         
+
+
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-users"></i> Solicitud de Nuevas Caracteristicas <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{% url 'admin_listado_de_caracteristicas' %}"><i class="fa fa-list-alt"></i> Listado de Caracteristicas</a></li>
+                                      
+
+
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
