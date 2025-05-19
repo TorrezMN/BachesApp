@@ -3,6 +3,7 @@ version: '3.7'
 services:
 
   back:
+    container_name: "baches_app"
     build:
       context: ./src
       dockerfile: Dockerfile
@@ -19,6 +20,13 @@ services:
       - POSTGRES_PASSWORD=hello_django
       - POSTGRES_HOST=db
       - POSTGRES_PORT=5433
+
+
+      # Para pruebas.
+      - DJANGO_SUPERUSER_USERNAME=admin
+      - DJANGO_SUPERUSER_EMAIL=admin@example.com
+      - DJANGO_SUPERUSER_PASSWORD=adminpass123
+
     ports:
       - "8000:8000"   
     restart: on-failure
@@ -26,6 +34,7 @@ services:
       - gis_network
 
   ngnx:
+    container_name: "baches_nginx"
     build: ./nginx
     volumes:
       - static:/static
@@ -38,7 +47,7 @@ services:
     restart: on-failure
 
   db:
-    container_name: "postgresqlpostgis"
+    container_name: "baches_db"
     image: "postgis/postgis"
     restart: always
     expose:
@@ -47,7 +56,7 @@ services:
       - '5433:5433'
     command: -p 5433
     volumes:
-       - db_persdata:/var/lib/postgrespers
+      - db_persdata:/var/lib/postgrespers
     environment:
       - POSTGRES_ENGINE=django.db.backends.postgresql
       - POSTGRES_DB=realstate
