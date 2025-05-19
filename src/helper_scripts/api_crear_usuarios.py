@@ -6,7 +6,8 @@ import requests
 from faker import Faker
 from time import sleep
 
-BASE_URL_REGISTER_USER = "https://baches-thesis.herokuapp.com/api_V1/register_user"
+#BASE_URL_REGISTER_USER = "https://baches-thesis.herokuapp.com/api_V1/register_user"
+BASE_URL_REGISTER_USER = "http://localhost/api_V1/register_user"
 
 
 
@@ -23,10 +24,12 @@ def get_data():
     #  print(req)
 
 for i in range(0,10):
-    req = requests.post(BASE_URL_REGISTER_USER, data= {
-        'email': 'caramelito@lindo.com',
-        'password':'lacontraseña',
+    req = requests.post(BASE_URL_REGISTER_USER, data=get_data()).json()
 
-
-    }).json()
+#    req = requests.post(BASE_URL_REGISTER_USER, data= {
+#        'email': 'caramelito@lindo.com',
+#        'password':'lacontraseña',
+#
+#
+#    }).json()
     print(req)
